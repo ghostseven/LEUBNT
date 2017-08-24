@@ -25,7 +25,7 @@ echo "Generate keys to be used in our signed certificate"
 
 #echo "Adjusting 15-fastcgi-python.conf so we can verify we own this domain via .well-known/acme-challenge/"
 [ -d /config/lighttpd/conf-enabled ] ||  mkdir /config/lighttpd/conf-enabled
-curl -o /config/lighttpd/conf-enabled/15-fastcgi-python.conf https://15-fastcgi-python.conf
+curl -o /config/lighttpd/conf-enabled/15-fastcgi-python.conf https://raw.githubusercontent.com/ghostseven/LEUBNT/master/15-fastcgi-python.conf
 ln -sf /config/lighttpd/conf-enabled/15-fastcgi-python.conf /etc/lighttpd/conf-enabled/15-fastcgi-python.conf
 ps -e | grep lighttpd | awk '{print $1;}' | xargs kill
 /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
@@ -34,4 +34,4 @@ ps -e | grep lighttpd | awk '{print $1;}' | xargs kill
 [ -d /var/www/htdocs/.well-known/acme-challenge/ ] || mkdir -p /var/www/htdocs/.well-known/acme-challenge/
 
 #echo "Run letsrenew.sh file to actually sign the certificate and generate new /etc/lighttpd/server.pem"
-#bash /config/letsencrypt/letsrenew.sh
+bash /config/letsencrypt/letsrenew.sh
