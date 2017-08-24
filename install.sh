@@ -14,7 +14,7 @@ fqdn=$1
 cp /etc/lighttpd/server.pem /config/letsencrypt/oldcert.pem
 curl -o /config/letsencrypt/acme_tiny.py https://raw.githubusercontent.com/diafygi/acme-tiny/master/acme_tiny.py
 chmod 755 /config/letsencrypt/acme_tiny.py
-curl -o /config/letsencrypt/letsrenew.sh https://letsrenew.sh
+curl -o /config/letsencrypt/letsrenew.sh https://raw.githubusercontent.com/ghostseven/LEUBNT/master/letsrenew.sh
 chmod 755 /config/letsencrypt/letsrenew.sh
 ln -sf /config/letsencrypt/letsrenew.sh /etc/cron.monthly/letsrenew.sh
 
