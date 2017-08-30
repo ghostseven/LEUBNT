@@ -24,7 +24,7 @@ echo "Generate keys to be used in our signed certificate"
 [ -f /config/letsencrypt/domain.csr ]  || openssl req -new -sha256 -key /config/letsencrypt/domain.key -subj "/CN=$fqdn" | tee /config/letsencrypt/domain.csr
 
 #echo "Adjusting 15-fastcgi-python.conf so we can verify we own this domain via .well-known/acme-challenge/"
-[ -d /config/lighttpd/conf-enabled ] ||  mkdir /config/lighttpd/conf-enabled
+[ -d /config/lighttpd/conf-enabled ] ||  mkdir -p /config/lighttpd/conf-enabled
 curl -o /config/lighttpd/conf-enabled/15-fastcgi-python.conf https://raw.githubusercontent.com/ghostseven/LEUBNT/master/15-fastcgi-python.conf
 ln -sf /config/lighttpd/conf-enabled/15-fastcgi-python.conf /etc/lighttpd/conf-enabled/15-fastcgi-python.conf
 ps -e | grep lighttpd | awk '{print $1;}' | xargs kill
